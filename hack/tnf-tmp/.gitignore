@@ -1,0 +1,4 @@
+fencingCredentials.yaml
+fencingCredentialsSecret.yaml
+machineConfig.yaml
+coreos/pull-secret.json

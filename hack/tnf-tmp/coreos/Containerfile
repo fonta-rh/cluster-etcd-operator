@@ -1,0 +1,16 @@
+# get coreos image from cluster
+#   oc adm release info --image-for rhel-coreos
+# or from https://amd64.ocp.releases.ci.openshift.org/
+#
+# to build an image, you need to authorize podman with your pull-secret file
+#   podman build --authfile=/path/to/pull-secret -t <image> .
+
+# OCP 4.19.0-0.nightly-2025-04-08-163320
+# RHEL coreos  419.96.202504080550-0
+FROM quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:d229c7e39c393d57436f44241c8e207783346542811330471f3576aa53811e17
+
+# Resource agent that fixes a problem with the official systemd one
+COPY heartbeat-systemctl /usr/lib/ocf/resource.d/heartbeat/systemctl
+
+# Resource agent to handle etcd via podman container
+COPY podman-etcd /usr/lib/ocf/resource.d/heartbeat/podman-etcd
