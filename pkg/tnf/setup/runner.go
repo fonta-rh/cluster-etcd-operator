@@ -12,9 +12,9 @@ import (
 	"k8s.io/client-go/rest"
 	"k8s.io/klog/v2"
 
-	"github.com/openshift/cluster-etcd-operator/pkg/tnf/setup/config"
-	"github.com/openshift/cluster-etcd-operator/pkg/tnf/setup/etcd"
-	"github.com/openshift/cluster-etcd-operator/pkg/tnf/setup/pcs"
+	"github.com/openshift/cluster-etcd-operator/pkg/tnf/pkg/config"
+	"github.com/openshift/cluster-etcd-operator/pkg/tnf/pkg/etcd"
+	"github.com/openshift/cluster-etcd-operator/pkg/tnf/pkg/pcs"
 )
 
 func RunTnfSetup() error {
@@ -61,6 +61,8 @@ func RunTnfSetup() error {
 	if err != nil {
 		return err
 	}
+
+	// TODO wait for auth ready!
 
 	// configure pcs cluster
 	configured, err := pcs.ConfigureCluster(ctx, cfg)
